@@ -106,29 +106,23 @@ btn_radio_body.grid(row=2,column=0,sticky=(W,))
 btn_radio_regards.grid(row=3,column=0,sticky=(W,))
 
 def change_value_btn_greetings(event):
-    print(btn_radio.get())
     entry_msg_txt.set(btn_radio.get())
     txt_greetings=entry_msg_txt.get()
-    print(txt_greetings)
-    print(btn_radio_greeting.winfo_viewable())
+
 
 def change_value_btn_body(event):
-    print(btn_radio.get())
     entry_msg_txt.set(btn_radio.get())
     txt_body=entry_msg_txt.get()
-    print(txt_body)
-    print(btn_radio_body.winfo_viewable())
+
 
 def change_value_btn_regards(event):
-    print(btn_radio.get())
     entry_msg_txt.set(btn_radio.get())
     txt_regards=entry_msg_txt.get()
-    print(txt_regards)
-    print(btn_radio_regards.winfo_viewable())
 
-btn_radio_greeting.bind('<Button-1>',change_value_btn_greetings)
-btn_radio_body.bind('<Button-1>',change_value_btn_body)
-btn_radio_regards.bind('<Button-1>',change_value_btn_regards)
+
+btn_radio_greeting.bind('<Double-1>',change_value_btn_greetings)
+btn_radio_body.bind('<Double-1>',change_value_btn_body)
+btn_radio_regards.bind('<Double-1>',change_value_btn_regards)
 
 lbl_text_message.grid(row=0,column=0,rowspan=1,columnspan=1,sticky=(W))
 entry_text.grid(row=1,column=1,rowspan=3,columnspan=3,sticky=(N,S,E,W))
@@ -150,28 +144,31 @@ entry_text.columnconfigure(1,weight=5)
 frm_emails.rowconfigure(0,weight=1)
 frm_emails.columnconfigure(0,weight=1)
 
-a=[x for x in frameBtm.winfo_children()]
-print(btn_radio_greeting.winfo_viewable())
 def get_value_from_entry_txt_put_to_variable(event):
     global txt_greetings
     global txt_body
     global txt_regards
     global txt_message_to_send
-    if btn_radio_regards.winfo_viewable()==1:
+    print(btn_radio.get())
+    if btn_radio.get()==txt_regards:
+        print('btn_radio_regards')
         txt_regards = entry_msg_txt.get()
-    elif btn_radio_body.winfo_viewable()==1:
+    elif btn_radio.get()==txt_body:
+        print('btn_radio_body')
         txt_body = entry_msg_txt.get()
-    elif btn_radio_greeting.winfo_viewable()==1:
+    elif btn_radio.get()==txt_greetings:
+        print('btn_radio_greeting')
         txt_greetings = entry_msg_txt.get()
-    print(txt_message_to_send)
+    print(txt_message_to_send,'---')
     txt_message_to_send = txt_greetings + '\n' + txt_body + '\n' + txt_regards
+    print(txt_message_to_send, '-+-')
     test_print()
 
 entry_text.bind('<Return>',get_value_from_entry_txt_put_to_variable)
 # send emails
 txt_message_to_send=txt_greetings+'\n'+txt_body+'\n'+txt_regards
 def test_print():
-    print(txt_message_to_send)
+    print(txt_message_to_send,'+++')
 
 def send_mail():
     print(search_variable)
