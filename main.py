@@ -111,6 +111,9 @@ def change_value_btn_greetings(event):
 
 
 def change_value_btn_body(event):
+    search_variable = var_inp.get()
+    txt_body = f'I would like to have price information for {search_variable} for our company located in Azerbaijan'
+    btn_radio_body['value']=txt_body
     entry_msg_txt.set(btn_radio.get())
     txt_body=entry_msg_txt.get()
 
